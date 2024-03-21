@@ -17,7 +17,7 @@ void addTask(const char *task){
     strcpy(tasks[length].task, task);
 
     length++;
-    printf("Task added");
+    printf("Task added \n");
 };
 
 void listTasks(){
@@ -69,9 +69,9 @@ void editTaskt(int index, const char* task){
         if (taskEdit!=NULL){
             tasks[index].task = taskEdit;
 
-            strcpy(tasks[length].task, task);
+            strcpy(tasks[index].task, task);
 
-            printf("The task was updated successfully");
+            printf("The task was updated successfully \n");
 
         }else{
             printf("Memory allocation failed !\n");
@@ -84,12 +84,63 @@ void editTaskt(int index, const char* task){
 
 int main()
 {
+    int choice;
+    int run = 1;
+    int indexInput;
+    char taskInput[100];
     printf("************Options************\n");
     printf("***1. Add a Task***\n");
     printf("***2. List all tasks***\n");
-    printf("***3. List all task***\n");
+    printf("***3. Mark as completed***\n");
     printf("***4. Edit task***\n");
     printf("***5. Delete task***\n");
     printf("***6. Exit***\n");
+
+    while(run){
+
+        printf("Enter your choice (1,2,3,4,5,6): ");
+        scanf("%d", &choice);
+        switch(choice){
+            case 1:
+                printf("Enter task : \n");
+                getchar();
+                fgets(taskInput, sizeof(taskInput), stdin);
+                taskInput[strcspn(taskInput, "\n" )] = '\0';
+                addTask(taskInput);
+                break;
+            case 2:
+                listTasks();
+                break;
+            case 3:
+                printf("Enter index: \n");
+                scanf("%d", &indexInput);
+                markCompleted(indexInput);
+                break;
+            case 4:
+                printf("Enter index: \n");
+                scanf("%d", &indexInput);
+                getchar();
+                fgets(taskInput, sizeof(taskInput), stdin);
+                taskInput[strcspn(taskInput, "\n" )] = '\0';
+                editTaskt(indexInput, taskInput);
+                break;
+            case 5:
+                printf("Enter index: \n");
+                scanf("%d", &indexInput);
+
+                deleteTask(indexInput);
+
+                break;
+            case 6:
+                run = 0;
+                break;
+            default:
+                printf("Invalid choice \n");
+                break;
+
+        }
+
+    }
     return 0;
 }
+

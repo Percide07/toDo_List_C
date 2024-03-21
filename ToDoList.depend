@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1711025922 source:c:\users\user\desktop\c training\todolist\main.c
+1711029432 source:c:\users\user\desktop\c training\todolist\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
